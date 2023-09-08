@@ -7,6 +7,7 @@ class Objeto{
     mostrarEstadisticas(){
         document.getElementById("estadisticas__container").style.display = 'inline'
         document.getElementById('nombre').innerText = this.nombre
+        document.getElementById('material').innerText = this.material
     }
 }
 
@@ -19,6 +20,13 @@ class Herramienta extends Objeto{
     atacar(enemigo){
         alert(`Atacando ${enemigo}`)
         //alert("Atacando " + enemigo)
+    }
+
+    mostrarEstadisticas(){
+        super.mostrarEstadisticas()
+        document.getElementById('durabilidad').innerText = this.duracion
+
+        document.getElementById('herramienta__datos').style.display = 'inline'
     }
 }
 
@@ -42,6 +50,24 @@ class Espada extends Herramienta{
         }
     }
 }
+
+class Pico extends Herramienta{
+    constructor(nombre, material, vidaUtil, dureza){
+        super(nombre, material, vidaUtil);
+        this.dureza = dureza;
+    }
+
+    picar(){
+        alert("Picando...")
+    }
+
+    mostrarEstadisticas(){
+        super.mostrarEstadisticas()
+        document.getElementById('dureza').innerText = this.dureza
+        document.getElementById('daño').innerText = 1
+    }
+}
+
 
 class Armadura extends Objeto{
     constructor(nombre, material, vidaUtil, proteccion){
@@ -74,6 +100,19 @@ var hachaHierro = new Herramienta(
     100
 )
 
+var picoOro = new Pico(
+    'Pico de Oro',
+    'Oro',
+    50,
+    20
+)
+
+document.getElementById('pico').addEventListener('click', () => {
+    picoOro.mostrarEstadisticas()
+})
+
+
 document.getElementById('espada').addEventListener('click', () => {
     espadaDiamante.mostrarEstadisticas()
 })
+
