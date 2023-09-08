@@ -6,7 +6,10 @@ class Objeto{
 
     mostrarEstadisticas(){
         document.getElementById("estadisticas__container").style.display = 'inline'
+        
         document.getElementById('nombre').innerText = this.nombre
+        document.getElementById("proteccion").innerText = this.proteccion
+        document.getElementById('vidautil').innerText = this.vidautil
     }
 }
 
@@ -44,9 +47,10 @@ class Espada extends Herramienta{
 }
 
 class Armadura extends Objeto{
-    constructor(nombre, material, vidaUtil, proteccion){
-        super(nombre, material, vidaUtil);
+    constructor(nombre, material, vidautil, proteccion){
+        super(nombre, material);
         this.proteccion = proteccion
+        this.vidautil=vidautil
     }
 
     quitar(){
@@ -54,6 +58,24 @@ class Armadura extends Objeto{
         document.getElementById("pantalones").addEventListener.style.display = 'none'
     }
 }
+
+class Pantalon extends Armadura{
+    constructor(nombre, material, vidautil, proteccion){
+        super(nombre, material, proteccion, vidautil)
+
+    }
+    mostrarEstadisticas(){
+        super.mostrarEstadisticas()
+        document.getElementById("daño_container" ).style.display = 'none'
+    }
+}
+var PantalonDiamante = new Armadura(
+    'PantalonDiamante',
+    'Diamante',
+    100,
+    80,
+    100
+)
 
 
 var espadaDiamante = new Espada(
@@ -76,4 +98,7 @@ var hachaHierro = new Herramienta(
 
 document.getElementById('espada').addEventListener('click', () => {
     espadaDiamante.mostrarEstadisticas()
+})
+document.getElementById('pantalon').addEventListener('click', () => {
+    PantalonDiamante.mostrarEstadisticas()
 })
