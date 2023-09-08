@@ -11,9 +11,9 @@ class Objeto{
 }
 
 class Herramienta extends Objeto{
-    constructor(nombre, material, duracion){
+    constructor(nombre, material, vidaUtil){
         super(nombre, material);
-        this.duracion = duracion;
+        this.duracion = vidaUtil;
     }
 
     atacar(enemigo){
@@ -23,26 +23,37 @@ class Herramienta extends Objeto{
 }
 
 class Espada extends Herramienta{
-    constructor(nombre, material, duracion, afilado){
-        super(nombre, material, duracion);
+    constructor(nombre, material, vidaUtil, afilado){
+        super(nombre, material, vidaUtil);
         this.afilado = afilado;
+    }
+
+    cortarTelaraña(){
+        alert("Cortando telaraña sin parametros...")
     }
 
     // metodo sobrecargado
     cortarTelaraña(objeto){
         alert(typeof objeto)
         if(objeto == "telaraña"){
-            alert("Cortando telaraña...")
+            alert("Cortando telaraña con parametros...")
         } else {
             alert("Esto no es una telaraña")
         }
     }
-
-    cortarTelaraña(){
-        alert("Cortando telaraña...")
-    }
 }
 
+class Armadura extends Objeto{
+    constructor(nombre, material, vidaUtil, proteccion){
+        super(nombre, material, vidaUtil);
+        this.proteccion = proteccion
+    }
+
+    quitar(){
+        alert("Quitando " + this.nombre);
+        document.getElementById("pantalones").addEventListener.style.display = 'none'
+    }
+}
 
 
 var espadaDiamante = new Espada(
@@ -52,8 +63,10 @@ var espadaDiamante = new Espada(
     30
     )
 
+/*
 espadaDiamante.cortarTelaraña()
 espadaDiamante.atacar()
+*/
 
 var hachaHierro = new Herramienta(
     'Hacha de Hierro',
