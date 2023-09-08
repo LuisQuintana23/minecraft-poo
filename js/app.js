@@ -22,6 +22,30 @@ class Herramienta extends Objeto{
     }
 }
 
+class Azada extends Herramienta{
+    constructor(nombre, material, vidaUtil, irrompibilidad){
+        super(nombre, material, vidaUtil);
+        this.irrompibilidad=irrompibilidad;
+        
+    }
+
+    mostrarEstadisticas(){
+        document.getElementById("estadisticas__container").style.display = 'inline'
+        document.getElementById('nombre').innerText = this.nombre
+        document.getElementById('herramienta__datos').style.display='inline';
+        document.getElementById('daño').innerText = this.irrompibilidad
+    }
+
+    labrarTierra(){
+        alert("labrando Tierra.....");
+    }
+
+    Guardar(){
+        alert("Guardando azada " + this.nombre);
+        document.getElementById("azada").addEventListener.style.display = 'none'
+    }
+}
+
 class Espada extends Herramienta{
     constructor(nombre, material, vidaUtil, afilado){
         super(nombre, material, vidaUtil);
@@ -74,6 +98,13 @@ var hachaHierro = new Herramienta(
     100
 )
 
+var azadaPiedra = new Azada('Azada de Piedra','Bloques de Piedra', 80, 'irrompible')
+
 document.getElementById('espada').addEventListener('click', () => {
     espadaDiamante.mostrarEstadisticas()
+})
+
+document.getElementById('azada').addEventListener('click', ()=>{
+    azadaPiedra.mostrarEstadisticas()
+    setTimeout(azadaPiedra.labrarTierra, 3000)
 })
