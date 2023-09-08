@@ -6,16 +6,30 @@ class Objeto{
 
     mostrarEstadisticas(){
         document.getElementById("estadisticas__container").style.display = 'inline'
+        document.getElementById("herramienta__datos").style.display = 'inline'
+
         document.getElementById('nombre').innerText = this.nombre
+        document.getElementById('Material').innerText = this.material
+        document.getElementById('daño').innerText = this.daño
+        document.getElementById('Durabilidad').innerText = this.duracion
+        document.getElementById('Encantamientos').innerText = this.encantamiento
     }
 }
 
 class Herramienta extends Objeto{
-    constructor(nombre, material, vidaUtil){
+    constructor(nombre, material, vidaUtil,daño,encantamiento){
         super(nombre, material);
         this.duracion = vidaUtil;
+        this.daño = daño
+        this.encantamiento = encantamiento
     }
 
+    soltar(){
+        alert(this.nombre+" Se ha soltado ")
+        document.getElementById("hacha").style.display="none";
+        document.getElementById("estadisticas__container").style.display = 'none'
+        document.getElementById("herramienta__datos").style.display = 'none'
+    }
     atacar(enemigo){
         alert(`Atacando ${enemigo}`)
         //alert("Atacando " + enemigo)
@@ -71,9 +85,28 @@ espadaDiamante.atacar()
 var hachaHierro = new Herramienta(
     'Hacha de Hierro',
     'Hierro',
-    100
+    100,
+    69,
+    "Ninguno"
+
 )
 
 document.getElementById('espada').addEventListener('click', () => {
     espadaDiamante.mostrarEstadisticas()
+})
+
+document.getElementById('hacha').addEventListener('click', () => {
+    hachaHierro.mostrarEstadisticas()
+})
+document.getElementById('soltar').addEventListener('click', () => {
+    hachaHierro.soltar()
+})
+
+document.addEventListener("keyup",(evento)=>{
+    if (evento.keyCode === 27){
+        document.getElementById("estadisticas__container").style.display = 'none'
+        document.getElementById("herramienta__datos").style.display = 'none'
+
+        
+    }
 })
