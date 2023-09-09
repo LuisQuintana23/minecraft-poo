@@ -1,3 +1,8 @@
+document.addEventListener("keyup", (evento)=>{
+    if(evento.keyCode == 27){
+        document.getElementsByClassName("peto")[0].style.opacity = 0;
+    }
+});
 class Objeto{
     constructor(nombre, material){
         this.nombre = nombre;
@@ -7,6 +12,9 @@ class Objeto{
     mostrarEstadisticas(){
         document.getElementById("estadisticas__container").style.display = 'inline'
         document.getElementById('nombre').innerText = this.nombre
+        document.getElementById('material').innerText = this.material
+        document.getElementById('vidaU').innerText = this.vidaUtil
+        document.getElementById('prote').innerText = this.proteccion
     }
 }
 
@@ -45,13 +53,14 @@ class Espada extends Herramienta{
 
 class Armadura extends Objeto{
     constructor(nombre, material, vidaUtil, proteccion){
-        super(nombre, material, vidaUtil);
+        super(nombre, material);
         this.proteccion = proteccion
+        this.vidaUtil = vidaUtil
     }
-
+    
     quitar(){
         alert("Quitando " + this.nombre);
-        document.getElementById("pantalones").addEventListener.style.display = 'none'
+        document.getElementById("peto").addEventListener.style.display = 'none'
     }
 }
 
@@ -74,6 +83,15 @@ var hachaHierro = new Herramienta(
     100
 )
 
+var petoHierro = new Armadura("Armadura de hierro","Hierro", 65, 60)
+
 document.getElementById('espada').addEventListener('click', () => {
     espadaDiamante.mostrarEstadisticas()
+})
+
+
+document.getElementById('peto').addEventListener('click', () => {
+    petoHierro.mostrarEstadisticas()
+    document.getElementsByClassName("peto")[0].style.opacity = 1;
+ 
 })

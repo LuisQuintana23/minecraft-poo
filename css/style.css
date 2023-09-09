@@ -109,10 +109,13 @@ main, footer{
 
 .dato__container{
     display: flex;
-    align-items: center;
-    gap:5px;
+    
+    gap:-50px;
+    flex-direction: column;
 }
-
+p{
+    padding: 5px;
+}
 #estadisticas__container,
 #herramienta__datos,
 #armadura__datos
